@@ -41,7 +41,6 @@ export class DashboardComponent implements OnInit {
                     this.loading.set(false);
                 },
                 error: (err) => {
-                    console.error('Error loading products', err);
                     this.loading.set(false);
                 }
             });

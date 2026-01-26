@@ -14,7 +14,7 @@ export class NotificationService {
             text,
             icon,
             confirmButtonText: 'Ok',
-            confirmButtonColor: '#2563eb' // Matching the app's primary color
+            confirmButtonColor: '#2563eb'
         });
     }
 

@@ -45,7 +45,6 @@ export class EditProductComponent {
                     this.close.emit(true);
                 },
                 error: (err) => {
-                    console.error('Error decreasing stock', err);
                     // Interceptor handles the alert. We just stop loading.
                     this.isLoading.set(false);
                 }
