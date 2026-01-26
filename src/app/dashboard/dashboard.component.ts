@@ -33,6 +33,7 @@ export class DashboardComponent implements OnInit {
 
     loadProducts() {
         this.loading.set(true);
+        console.log(this.page(), this.limit(), this.searchTerm());
         this.productService.getProducts(this.page(), this.limit(), this.searchTerm())
             .subscribe({
                 next: (res) => {
@@ -48,7 +49,7 @@ export class DashboardComponent implements OnInit {
 
     onSearch(term: string) {
         this.searchTerm.set(term);
-        this.page.set(1); 
+        this.page.set(1);
         this.loadProducts();
     }
 
@@ -56,6 +57,12 @@ export class DashboardComponent implements OnInit {
         this.page.set(newPage);
         this.loadProducts();
     }
+
+    onItemsPerPageChange(newLimit: number) {
+        this.limit.set(newLimit);
+        this.loadProducts();
+    }
+
 
     onEditProduct(product: Product) {
         this.selectedProduct.set(product);

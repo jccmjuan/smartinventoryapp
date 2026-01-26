@@ -1,4 +1,4 @@
-<div>
+<div class="flex flex-row justify-center">
     <ul class="pagination justify-content-center">
         <li class="page-item bg-black p-1 text-white border border-solid border-black rounded-l-lg"
             [class.disabled]="curr() === 1">
@@ -35,4 +35,13 @@
                 <a class="page-link" (click)="pageChange(dataCount())">Ultimo</a>
             </li>
     </ul>
+
+    <select class="form-select ml-2 border border-solid border-black" (change)="itemsPerPageChange($event)">
+        <option disabled selected>Items por página</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="75">75</option>
+        <option value="100">100</option>
+    </select>
+
 </div>

@@ -9,6 +9,7 @@ import { Component, computed, input, output, signal } from '@angular/core';
 export class Paginator {
   dataCount = input.required<number>();
   dataEvent = output<number>();
+  dataEventItems = output<number>();
 
   curr = signal<number>(1);
 
@@ -36,6 +37,13 @@ export class Paginator {
     if (page >= 1 && page <= this.dataCount()) {
       this.curr.set(page);
       this.dataEvent.emit(page);
+    }
+  }
+
+  itemsPerPageChange(event: Event) {
+    if (this.dataCount() > 0) {
+      const value = (event.target as HTMLSelectElement).value;
+      this.dataEventItems.emit(Number(value));
     }
   }
 }
