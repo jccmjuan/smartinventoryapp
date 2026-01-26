@@ -13,7 +13,7 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class EditProductComponent {
     product = input.required<Product>();
-    close = output<boolean>(); // Emits true if updated, false if cancelled
+    close = output<boolean>(); 
 
     private productService = inject(ProductService);
     private notificationService = inject(NotificationService);
@@ -28,7 +28,7 @@ export class EditProductComponent {
 
     onConfirm() {
         if (this.decreaseAmount() <= 0) {
-            // this is just a local validation, not a server error
+            
             this.errorMessage.set('La cantidad debe ser mayor a 0');
             return;
         }
@@ -36,7 +36,7 @@ export class EditProductComponent {
         this.isLoading.set(true);
         this.errorMessage.set('');
 
-        // descrease stock service call
+        
         this.productService.decreaseStock(this.product().sku, this.decreaseAmount())
             .subscribe({
                 next: () => {
@@ -45,7 +45,7 @@ export class EditProductComponent {
                     this.close.emit(true);
                 },
                 error: (err) => {
-                    // Interceptor handles the alert. We just stop loading.
+                    
                     this.isLoading.set(false);
                 }
             });

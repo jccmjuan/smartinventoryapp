@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
 
     onSearch(term: string) {
         this.searchTerm.set(term);
-        this.page.set(1); // Reset to first page on search
+        this.page.set(1); 
         this.loadProducts();
     }
 
