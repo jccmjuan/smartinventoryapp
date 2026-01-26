@@ -1,3 +1,15 @@
+
+-Parte frontend, hecho con angular v.21
+
+-Se genero el componente de dashboard, paginacion y filtro
+
+-Un modal para descontar unidades de stock
+
+-En el componente de dashboard se aplica ChangeDetectionStrategy.OnPush, y tambien se hace el uso de signals para tener una mejor reactividad al actualizar solo los componentes espcificos
+
+-Se usa tambien un interceptor global, que se encargara de notificar cuando se haga una peticion http en cualquier servicio, y ya sea que la respuesta sea exitosa o no, aparecera un alert que se mostrara en la pantalla
+
+
 # Smartinventoryappfront
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.1.
