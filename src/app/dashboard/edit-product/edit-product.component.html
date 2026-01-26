@@ -1,0 +1,49 @@
+<div class="modal-overlay" (click)="onCancel()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+        <div class="modal-header">
+            <h2>Editar Producto</h2>
+            <button class="close-btn" (click)="onCancel()">×</button>
+        </div>
+
+        <div class="product-details">
+            <div class="detail-row">
+                <label>Nombre:</label>
+                <span>{{ product().name }}</span>
+            </div>
+            <div class="detail-row">
+                <label>SKU:</label>
+                <span>{{ product().sku }}</span>
+            </div>
+            <div class="detail-row">
+                <label>Stock Actual:</label>
+                <span>{{ product().stock }}</span>
+            </div>
+        </div>
+
+        <div class="update-section">
+            <h3>Disminuir Stock</h3>
+            <div class="input-group">
+                <label for="amount">Cantidad a disminuir:</label>
+                <input type="number" id="amount" [ngModel]="decreaseAmount()"
+                    (ngModelChange)="decreaseAmount.set($event)" min="1">
+            </div>
+
+            @if (errorMessage()) {
+            <div class="error-message">
+                {{ errorMessage() }}
+            </div>
+            }
+        </div>
+
+        <div class="modal-actions">
+            <button class="cancel-btn" (click)="onCancel()" [disabled]="isLoading()">Cancelar</button>
+            <button class="confirm-btn" (click)="onConfirm()" [disabled]="isLoading()">
+                @if (isLoading()) {
+                Procesando...
+                } @else {
+                Confirmar
+                }
+            </button>
+        </div>
+    </div>
+</div>

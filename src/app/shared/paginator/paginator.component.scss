@@ -1,0 +1,21 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.page-item.disabled .page-link {
+    pointer-events: none;
+    cursor: default;
+}
+
+.page-link {
+
+    cursor: pointer;
+    /* Change this to your desired color */
+}
+
+.page-item.active .page-link {
+    /* Change this to your desired color */
+    cursor: pointer;
+}

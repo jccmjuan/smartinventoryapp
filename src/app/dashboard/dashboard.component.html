@@ -1,0 +1,72 @@
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <h1>Productos</h1>
+        <div class="search-box">
+            <input type="text" placeholder="buscar productos..." (input)="onSearch($any($event.target).value)"
+                class="search-input" />
+            <span class="search-icon">🔍</span>
+        </div>
+    </div>
+
+    <div class="table-container">
+        @if (loading()) {
+        <div class="loading-state">Cargando productos...</div>
+        } @else {
+        <table class="product-table">
+            <thead>
+                <tr>
+                    <th>SKU</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Precio</th>
+                    <th>Stock</th>
+                    <th>Tags</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (product of products(); track product.id) {
+                <tr>
+                    <td><span class="sku-badge">{{ product.sku }}</span></td>
+                    <td class="product-name">{{ product.name }}</td>
+                    <td class="product-desc" title="{{ product.description }}">{{ product.description }}</td>
+                    <td class="product-price">${{ product.price }}</td>
+                    <td>
+                        <span class="stock-badge" [class.low-stock]="product.stock < 10">
+                            {{ product.stock }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="tags">
+                            @for (tag of product.tags; track tag) {
+                            <span class="tag">{{ tag }}</span>
+                            }
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="edit-btn cursor-pointer" title="Editar" (click)="onEditProduct(product)">
+                                <span class="edit-icon">✏️</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                } @empty {
+                <tr>
+                    <td colspan="6" class="no-data">No se encontraron productos.</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+
+    <div class="row justify-content-center">
+        <app-paginator [dataCount]="total() / limit()" (dataEvent)="onPageChange($event)"></app-paginator>
+    </div>
+
+    @if (selectedProduct()) {
+    <app-edit-product [product]="selectedProduct()!" (close)="onCloseEdit($event)">
+    </app-edit-product>
+    }
+</div>

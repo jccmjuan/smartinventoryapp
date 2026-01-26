@@ -1,0 +1,38 @@
+<div>
+    <ul class="pagination justify-content-center">
+        <li class="page-item bg-black p-1 text-white border border-solid border-black rounded-l-lg"
+            [class.disabled]="curr() === 1">
+            <a class="page-link" (click)="pageChange(1)">Primero</a>
+        </li>
+        <li class="page-item border p-1" [class.disabled]="curr() === 1">
+            <a class="page-link" (click)="pageChange(curr() - 1)">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only"></span>
+            </a>
+        </li>
+        @if (pages()[0] > 1) {
+        <li class="page-item border p-1">
+            <a class="page-link">...</a>
+        </li>
+        }
+        @for (page of pages(); track page) {
+        <li class="page-item border p-1" [class.active]="page === curr()">
+            <a class="page-link" (click)="pageChange(page)">{{ page }}</a>
+        </li>
+        }
+        @if (pages()[pages().length - 1] < dataCount()) { <li class="page-item border p-1">
+            <a class="page-link">...</a>
+            </li>
+            }
+            <li class="page-item border p-1" [class.disabled]="curr() === dataCount()">
+                <a class="page-link" (click)="pageChange(curr() + 1)">
+                    <span aria-hidden="true">&raquo;</span>
+                    <span class="sr-only"></span>
+                </a>
+            </li>
+            <li class="page-item bg-black p-1 text-white border border-solid border-black rounded-r-lg"
+                [class.disabled]="curr() === dataCount()">
+                <a class="page-link" (click)="pageChange(dataCount())">Ultimo</a>
+            </li>
+    </ul>
+</div>
