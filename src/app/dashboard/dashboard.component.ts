@@ -28,7 +28,25 @@ export class DashboardComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        this.loadProducts();
+      this.productService.pruebaApi2().subscribe({
+        next: (res) => {
+          console.log('Respuesta de la API:', res);
+        },
+        error: (err) => {
+          console.error('Error al llamar a la API:', err);
+        }
+      });
+
+      this.productService.pruebaApi3().subscribe({
+        next: (res) => {
+          console.log('Respuesta de la API:', res);
+        },
+        error: (err) => {
+          console.error('Error al llamar a la API:', err);
+        }
+      });
+
+      this.loadProducts();
     }
 
     loadProducts() {
